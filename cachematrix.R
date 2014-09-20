@@ -58,7 +58,7 @@ cacheSolve <- function(x, ...) {
         m <- solve(data, ...)
         # use setInverse to set the inverse        
         x$setInverse(m)
-        # use getInverse to get inverse this will check setInverse
+        # use getInverse return the inverse 
         m <- x$getInverse()
         #return the inverse of the matrix 
         return(m)

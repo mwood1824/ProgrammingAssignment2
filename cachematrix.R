@@ -1,7 +1,7 @@
 ## cachematrix.R - Utility functions to deal with invertible matrices 
 ##  	These functions speed up the calculation of the inverse of a matrix
-## 	by returning a cached copy if the inverse has already been found 
-## 	this saves time in looping cases where the inverse of a matrix needs to 
+## 	by returning a cached copy if the inverse has already been found. 
+## 	This saves time in looping cases where the inverse of a matrix needs to 
 ## 	re-used several times.
 ## 
 ##   usage example :
@@ -20,16 +20,16 @@ makeCacheMatrix <- function(x = matrix()) {
             x <<- y
             m <<- NULL
         }
-        # get will returns the copy of the matrix 
+        # get will return the matrix 
         get <- function() x
 
-        # set will set solves to find the inverse of the matrix
+        # setInverse will call solve to find the inverse of the matrix
         setInverse <- function(solve) m <<- solve
 
-        # get inverse returns the inverse of the matrix
+        # getInverse returns the inverse of the matrix
         getInverse <- function() m
 
-        # this defines the sub funtions created in a list
+        # list defines the functions created
         list(set = set, get = get, 
                  setInverse = setInverse,
                  getInverse = getInverse)
@@ -37,10 +37,9 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Solves to find a matrix inverse. If the inverse has already been found returns 
-## a cached copy of the inverse. If inverse has not been found then inverse is found
-## and that is returned. 
-
+## Solves to find a matrix inverse. 
+## If the inverse has already been found returns a cached copy of the inverse. 
+## If inverse has not been found, then inverse is found and returned. 
 cacheSolve <- function(x, ...) {
         # returns the value of the inverse of the matrix
  	m <- x$getInverse()
